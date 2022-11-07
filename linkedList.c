@@ -113,11 +113,36 @@ void Insert(struct Node *p, int index, int x)
   p->next = t;
 }
 
+// Delete a node
+void Delete(struct Node *p, int index)
+{
+  struct Node *t = NULL;
+  int x;
+
+  if (index < 1)
+  {
+    printf("Wrong index!");
+  }
+  else
+  {
+    for (int i = 0; i < index - 1; i++)
+    {
+      t = p;
+      p = p->next;
+    }
+    t->next = p->next;
+    x = p->data;
+    free(p);
+    printf("\n%d was deleted from the List.", x);
+  }
+}
+
 int main()
 {
   int A[] = {3, 5, 7, 9, 11, 13};
   Create(A, 6);
   Insert(head, 3, 30);
+  Delete(head, 3);
   Display(head);
   Count(head);
   Sum(head);
